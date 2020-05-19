@@ -1,0 +1,14 @@
+
+  <ng-container  *ngFor="let message of messages$ | async">
+
+      <div class="alert  alert-dismissible fade show"
+           [ngClass]="{'alert-danger': message.type === 'ERROR','alert-success': message.type === 'SUCCESS'}">
+        {{message.description}}
+        <button class="close" (click)="remove(message)">
+          <span>&times;</span>
+        </button>
+      </div>
+
+
+  </ng-container>
+
