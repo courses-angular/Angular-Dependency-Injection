@@ -13,6 +13,7 @@ import {Observable} from 'rxjs';
 import {Message} from '@angular/compiler/src/i18n/i18n_ast';
 import {IMessage} from './central-message-types';
 import {map} from 'rxjs/operators';
+import {AbstractCentralMessage} from './abstract-central-message';
 
 @Component({
   selector: 'yl-central-message',
@@ -26,7 +27,7 @@ export class CentralMessageComponent implements OnInit, AfterViewInit {
   // @ViewChild('container', {read: ViewContainerRef}) container: ViewContainerRef;
 
 
-  constructor(private centralMessageService: CentralMessageService, private renderer: Renderer2) {
+  constructor(private centralMessageService: AbstractCentralMessage, private renderer: Renderer2) {
   }
 
   ngOnInit(): void {

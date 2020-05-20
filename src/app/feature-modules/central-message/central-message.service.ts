@@ -2,20 +2,16 @@ import {Inject, Injectable, Optional} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Message} from '@angular/compiler/src/i18n/i18n_ast';
 import {IMessage, MESSAGE_LOGGERS, MessageLogger} from './central-message-types';
+import {AbstractCentralMessage} from './abstract-central-message';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CentralMessageService {
-  private messages: BehaviorSubject<IMessage[]>;
-  private messageState: IMessage[];
+export class CentralMessageService extends AbstractCentralMessage{
 
-  readonly messages$: Observable<IMessage[]>;
 
   constructor(@Inject(MESSAGE_LOGGERS) @Optional() private loggers: MessageLogger[]) {
-    this.messages = new BehaviorSubject<IMessage[]>([]);
-    this.messageState = [];
-    this.messages$ = this.messages.asObservable();
+    super();
   }
 
   public setMessage(message: IMessage): void {

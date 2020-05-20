@@ -7,6 +7,9 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {CentralMessageModule} from './feature-modules/central-message/central-message.module';
 import {CentralMessageComponent} from './feature-modules/central-message/central-message.component';
 import {IMessage, MESSAGE_LOGGERS, MessageLogger} from './feature-modules/central-message/central-message-types';
+import {AbstractCentralMessage} from './feature-modules/central-message/abstract-central-message';
+import {CentralMessageService} from './feature-modules/central-message/central-message.service';
+import {CustomMessageService} from './custom-message-service';
 
 
 class MessageConsoleLogger implements MessageLogger {
@@ -26,6 +29,8 @@ class MessageServerLogger implements MessageLogger {
   }
 
 }
+
+
 
 
 @NgModule({
@@ -48,6 +53,10 @@ class MessageServerLogger implements MessageLogger {
       provide: MESSAGE_LOGGERS,
       useClass: MessageServerLogger,
       multi: true
+    },
+    {
+      provide: AbstractCentralMessage,
+      useClass: CustomMessageService
     }
   ],
   bootstrap: [AppComponent, CentralMessageComponent]

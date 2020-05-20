@@ -4,11 +4,12 @@ import {Observable, of} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {CentralMessageService} from './central-message.service';
 import {MessageType} from './central-message-types';
+import {AbstractCentralMessage} from './abstract-central-message';
 
 @Injectable()
 export class ApiErrorInterceptor implements HttpInterceptor {
 
-  constructor(private centralMessageService: CentralMessageService) {
+  constructor(private centralMessageService: AbstractCentralMessage) {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
